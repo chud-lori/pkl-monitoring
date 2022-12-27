@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Dudi extends Model
 {
     use HasFactory;
+
+    public function siswas()
+    {
+        return $this->hasMany(Siswa::class);
+    }
 }

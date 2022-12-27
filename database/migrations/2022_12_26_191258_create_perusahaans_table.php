@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('perusahaans', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
-            $table->string("npwp")->nullable();
-            $table->string("alamat");
+            $table->string('nama');
+            $table->string('npwp')->nullable();
+            $table->string('alamat');
             $table->timestamps();
         });
     }

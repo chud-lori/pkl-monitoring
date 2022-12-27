@@ -9,8 +9,20 @@ class Siswa extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nama', 'email', 'password'];
+
     public function jurnals()
     {
         return $this->hasMany(Jurnal::class);
+    }
+
+    public function pembimbing()
+    {
+        return $this->belongsTo(Pembimbing::class);
+    }
+
+    public function dudi()
+    {
+        return $this->belongsTo(Dudi::class);
     }
 }

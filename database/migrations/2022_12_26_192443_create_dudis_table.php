@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('dudis', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('email');
+            $table->string('password');
+            $table->unsignedBigInteger('perusahaan_id');
             $table->timestamps();
+
+            $table->foreign('perusahaan_id')->references('id')->on('perusahaans');
         });
     }
 
