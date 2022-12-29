@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DudiController;
+use App\Http\Controllers\SiswaController;
+use App\Models\Pembimbing;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +22,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [AuthController::class, 'loginView']);
+Route::get('/login', [AuthController::class, 'loginView'])->name('login.view');
 Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');
+
+Route::get('/siswa', [SiswaController::class, 'dashboard'])->name('siswa.dashboard')->middleware(('auth:siswa'));
+Route::get('/pembimbing', [Pembimbing::class, 'dashboard'])->name('pembimbing.dashboard')->middleware(('auth:pembimbing'));
+Route::get('/dudi', [DudiController::class, 'dashboard'])->name('dudi.dashboard')->middleware(('auth:dudi'));

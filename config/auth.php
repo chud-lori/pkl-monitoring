@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswa',
+        ],
+        'pembimbing' => [
+            'driver' => 'session',
+            'provider' => 'pembimbing',
+        ],
+        'dudi' => [
+            'driver' => 'session',
+            'provider' => 'dudi',
+        ],
     ],
 
     /*
@@ -64,11 +76,18 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
+        'pembimbing' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pembimbing::class,
+        ],
+        'dudi' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dudi::class,
+        ],
     ],
 
     /*

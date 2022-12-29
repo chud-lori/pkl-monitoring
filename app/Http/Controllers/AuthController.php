@@ -6,12 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Pembimbing;
 use App\Models\Dudi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function loginView()
     {
+        Auth::check();
+        Auth::guard('dudi')->logout();
+        if(Auth::guard('siswa')->check())
+        {
+            return redirect()->route('siswa.dashboard');
+        }
+        else if(Auth::guard('pembimbing')->check())
+        {
+            return redirect()->route('pembimbing.dashboard');
+        }
+        else if(Auth::guard('dudi')->check())
+        {
+            return redirect()->route('dudi.dashboard');
+        }
         return view('login');
     }
 
@@ -45,18 +60,16 @@ class AuthController extends Controller
             ]);
         }
 
-        if (Hash::check($password, $user->password))
-        {
-            return response()->json([
-                "message" => "LOGIN SUCCESS"
-            ]);
-        }
-        else
+        if (!Hash::check($password, $user->password))
         {
             return response()->json([
                 "message" => "LOGIN FAILED"
             ]);
         }
 
+        Auth::guard($role)->attempt(['email' => $request->email, 'password' => $request->password]);
+
+        $dashboard = $role . ".dashboard";
+        return redirect()->route($dashboard);
     }
 }
