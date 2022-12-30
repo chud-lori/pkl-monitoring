@@ -8,5 +8,7 @@
 </head>
 <body>
     <h1>dashboard dudi</h1>
+
+    <a href="{{ route('logout', ['role' => 'dudi']) }}">Logout</a>
 </body>
 </html>

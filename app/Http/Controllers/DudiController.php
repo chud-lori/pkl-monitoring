@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DudiController extends Controller
 {
@@ -10,4 +11,5 @@ class DudiController extends Controller
     {
         return view ('dashboard.dudi');
     }
+
 }

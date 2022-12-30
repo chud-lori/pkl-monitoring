@@ -8,5 +8,7 @@
 </head>
 <body>
     <h1>dashboard siswa</h1>
+
+    <a href="{{ route('logout', ['role' => 'siswa']) }}">Logout</a>
 </body>
 </html>

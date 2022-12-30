@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Pembimbing;
 use App\Models\Dudi;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,8 +14,8 @@ class AuthController extends Controller
 {
     public function loginView()
     {
-        Auth::check();
-        Auth::guard('dudi')->logout();
+        // Auth::check();
+
         if(Auth::guard('siswa')->check())
         {
             return redirect()->route('siswa.dashboard');
@@ -71,5 +72,28 @@ class AuthController extends Controller
 
         $dashboard = $role . ".dashboard";
         return redirect()->route($dashboard);
+    }
+
+    public function logout(Request $request)
+    {
+
+        if($request->query('role') == null)
+        {
+            return response()->json([
+                'message' => 'Failed'
+            ], 404);
+        }
+
+        try {
+            Auth::guard($request->query('role'))->logout();
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed'
+            ], 404);
+        }
+
+        // Auth::guard($request->query('role'))->logout();
+
+        // return redirect()->route('login.view');
     }
 }
