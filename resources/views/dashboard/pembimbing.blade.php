@@ -9,6 +9,15 @@
 <body>
     <h1>dashboard pembimbing</h1>
 
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
+    <a href="{{ route('pembimbing.addsiswa') }}">Tambah siswa</a>
+
     <a href="{{ route('logout', ['role' => 'pembimbing']) }}">Logout</a>
+
 </body>
 </html>

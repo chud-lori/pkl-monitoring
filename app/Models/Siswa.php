@@ -12,7 +12,7 @@ class Siswa extends Authenticatable
 
     protected $guard = 'siswa';
 
-    protected $fillable = ['nama', 'email', 'password'];
+    protected $fillable = ['nama', 'email', 'password', 'nisn'];
 
     public function jurnals()
     {

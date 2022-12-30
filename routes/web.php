@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DudiController;
+use App\Http\Controllers\PembimbingController;
 use App\Http\Controllers\SiswaController;
 use App\Models\Pembimbing;
 
@@ -27,5 +28,15 @@ Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store'
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/siswa', [SiswaController::class, 'dashboard'])->name('siswa.dashboard')->middleware(('auth:siswa'));
-Route::get('/pembimbing', [Pembimbing::class, 'dashboard'])->name('pembimbing.dashboard')->middleware(('auth:pembimbing'));
+
 Route::get('/dudi', [DudiController::class, 'dashboard'])->name('dudi.dashboard')->middleware(('auth:dudi'));
+
+
+// Pembimbing
+
+Route::group(['prefix' => 'pembimbing',  'middleware' => 'auth:pembimbing', 'controller' => PembimbingController::class], function()
+{
+    Route::get('', 'dashboard')->name('pembimbing.dashboard');
+    Route::get('/addsiswa', 'addSiswa')->name('pembimbing.addsiswa');
+    Route::post('/addsiswa', 'storeSiswa')->name('pembimbing.storesiswa');
+});

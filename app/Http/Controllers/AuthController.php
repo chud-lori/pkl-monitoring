@@ -92,8 +92,6 @@ class AuthController extends Controller
             ], 404);
         }
 
-        // Auth::guard($request->query('role'))->logout();
-
-        // return redirect()->route('login.view');
+        return redirect()->route('login.view');
     }
 }
