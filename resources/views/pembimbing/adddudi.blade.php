@@ -18,11 +18,12 @@
         <span>Password</span>
         <input type="password" name="password" disabled placeholder="Menggunakan email by default" id="">
         <br>
+
         <select name="perusahaan_id" id="">
             <option value="" hidden>Perusahaan</option>
-                <option value="pembimbing">Pembimbing</option>
-                <option value="dudi">Dudi</option>
-                <option value="siswa">Siswa</option>
+            @foreach ($perusahaans as $p)
+            <option value="{{ $p->id }}"> {{ $p->nama }}</option>
+            @endforeach
         </select>
         <br>
         <input type="submit" value="Tambah">

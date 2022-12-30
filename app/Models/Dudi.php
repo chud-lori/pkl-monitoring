@@ -12,6 +12,8 @@ class Dudi extends Authenticatable
 
     protected $guard = 'dudi';
 
+    protected $fillable = ['nama', 'email', 'password', 'perusahaan_id'];
+
     public function siswas()
     {
         return $this->hasMany(Siswa::class);

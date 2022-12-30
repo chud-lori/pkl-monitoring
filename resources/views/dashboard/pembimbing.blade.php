@@ -16,6 +16,7 @@
     @endif
 
     <a href="{{ route('pembimbing.addsiswa') }}">Tambah siswa</a>
+    <a href="{{ route('pembimbing.adddudi') }}">Tambah dudi</a>
 
     <a href="{{ route('logout', ['role' => 'pembimbing']) }}">Logout</a>
 

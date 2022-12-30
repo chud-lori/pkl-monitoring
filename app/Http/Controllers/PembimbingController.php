@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dudi;
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Hash;
@@ -38,20 +39,20 @@ class PembimbingController extends Controller
 
     public function addDudi()
     {
-        return view('pembimbing.adddudi');
+        $perusahaans = Perusahaan::all();
+        // dd($perusahaans);
+        return view('pembimbing.adddudi', ['perusahaans' => $perusahaans]);
     }
 
     public function storeDudi(Request $request)
     {
-        // dd($request);
-
         $password = Hash::make($request->email);
 
         $dudi = Dudi::create([
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => $password,
-            'perusahaan_id' => $request->nisn
+            'perusahaan_id' => $request->perusahaan_id
         ]);
 
         return redirect()->route('pembimbing.dashboard')->with('status', 'dudi ditambahkan');
