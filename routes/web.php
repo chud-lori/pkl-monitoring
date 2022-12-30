@@ -41,4 +41,7 @@ Route::group(['prefix' => 'pembimbing',  'middleware' => 'auth:pembimbing', 'con
     Route::post('/addsiswa', 'storeSiswa')->name('pembimbing.storesiswa');
     Route::get('/adddudi', 'addDudi')->name('pembimbing.adddudi');
     Route::post('/adddudi', 'storeDudi')->name('pembimbing.storedudi');
+
+    Route::get('/edit', 'editPembimbing')->name('pembimbing.editpembimbing');
+    Route::post('/edit', 'updatePembimbing')->name('pembimbing.updatepembimbing');
 });

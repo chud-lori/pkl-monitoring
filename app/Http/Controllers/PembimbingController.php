@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dudi;
+use App\Models\Pembimbing;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
@@ -56,6 +57,27 @@ class PembimbingController extends Controller
         ]);
 
         return redirect()->route('pembimbing.dashboard')->with('status', 'dudi ditambahkan');
+    }
 
+    public function editPembimbing()
+    {
+        $user = auth()->user();
+        // dd($user->id);
+        // dd($perusahaans);
+        return view('pembimbing.edit', ['user' => $user]);
+    }
+
+    public function updatePembimbing(Request $request)
+    {
+
+        $user_id = auth()->user()->id;
+        // All posted data except token and id
+        $data = request()->except(['_token','id']);
+        // Remove empty array values from the data
+        $data = array_filter($data);
+
+        $user = Pembimbing::where('id', $user_id)->update($data);
+
+        return redirect()->route('pembimbing.dashboard')->with('status', 'data tersunting');
     }
 }
